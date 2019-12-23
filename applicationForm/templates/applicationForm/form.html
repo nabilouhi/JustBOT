@@ -1,0 +1,175 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block headContent %}
+<link rel="stylesheet" href="{% static 'applicationForm/intlTelInput/intlTelInput.min.css' %}">
+<link rel="stylesheet" href="{% static 'applicationForm/stepper/bs-stepper.min.css' %}">
+<link rel="stylesheet" href="{% static 'applicationForm/css/formStyles.css' %}">
+<link rel="stylesheet" href="{% static 'applicationForm/parsley/parsley.css' %}">
+<link rel="stylesheet" href="{% static 'applicationForm/countrySelect/countrySelect.min.css' %}">
+<link rel="stylesheet" href="{% static 'applicationForm/tagsinput/tagsinput.css' %}">
+<link rel="stylesheet" href="{% static 'applicationForm/bootstrap-select/bootstrap-select.min.css' %}">
+{% endblock headContent %}
+
+{% block content %}
+<div class="jumbotron" style=' color:white;text-align:center;background: linear-gradient(to bottom, rgba(22, 22, 22, 1) 0%, rgba(0, 0, 0, 0) 75%, #161616 100%), url("{% static 'home/images/giphy.gif' %}");background-size: 100%'>
+        <h1 class="display-5" style=' color:white;'>Application Form
+        </h1>
+       </div>
+<div class=" mb-5 p-4 bg-white shadow-sm">
+    <div id="stepperForm" class="bs-stepper">
+        <div class="bs-stepper-header" role="tablist">
+            <div class="step" data-target="#form-page-1">
+                <button type="button" class="step-trigger" role="tab" id="stepperFormTrigger1"
+                    aria-controls="form-page-1">
+                    <span class="bs-stepper-circle">1</span>
+                    <span class="bs-stepper-label">Prerequisites</span>
+                </button>
+            </div>
+            <!-- <div class="bs-stepper-line"></div> -->
+            <div class="step" data-target="#form-page-2">
+                <button type="button" class="step-trigger" role="tab" id="stepperFormTrigger2"
+                    aria-controls="form-page-2">
+                    <span class="bs-stepper-circle">2</span>
+                    <span class="bs-stepper-label">Applicant Details</span>
+                </button>
+            </div>
+            <!-- <div class="bs-stepper-line"></div> -->
+            <div class="step" data-target="#form-page-3">
+                <button type="button" class="step-trigger" role="tab" id="stepperFormTrigger3"
+                    aria-controls="form-page-3">
+                    <span class="bs-stepper-circle">3</span>
+                    <span class="bs-stepper-label">Representative</span>
+                </button>
+            </div>
+            <!-- <div class="bs-stepper-line"></div> -->
+            <div class="step" data-target="#form-page-4">
+                <button type="button" class="step-trigger" role="tab" id="stepperFormTrigger4"
+                    aria-controls="form-page-4">
+                    <span class="bs-stepper-circle">4</span>
+                    <span class="bs-stepper-label">Facts</span>
+                </button>
+            </div>
+            <!-- <div class="bs-stepper-line"></div> -->
+            <div class="step" data-target="#form-page-5">
+                <button type="button" class="step-trigger" role="tab" id="stepperFormTrigger5"
+                    aria-controls="form-page-5">
+                    <span class="bs-stepper-circle">5</span>
+                    <span class="bs-stepper-label">Article Violation(s)</span>
+                </button>
+            </div>
+            <!-- <div class="bs-stepper-line"></div> -->
+            <div class="step" data-target="#form-page-6">
+                <button type="button" class="step-trigger" role="tab" id="stepperFormTrigger6"
+                    aria-controls="form-page-6">
+                    <span class="bs-stepper-circle">6</span>
+                    <span class="bs-stepper-label">Domestic Proceedings</span>
+                </button>
+            </div>
+            <!-- <div class="bs-stepper-line"></div> -->
+            <div class="step" data-target="#form-page-7">
+                <button type="button" class="step-trigger" role="tab" id="stepperFormTrigger7"
+                    aria-controls="form-page-7">
+                    <span class="bs-stepper-circle">7</span>
+                    <span class="bs-stepper-label">International Proceedings</span>
+                </button>
+            </div>
+            <div class="step" data-target="#form-page-8">
+                <button type="button" class="step-trigger" role="tab" id="stepperFormTrigger8"
+                    aria-controls="form-page-8">
+                    <span class="bs-stepper-circle">8</span>
+                    <span class="bs-stepper-label">Documents</span>
+                </button>
+            </div>
+            <div class="step" data-target="#form-page-9">
+                <button type="button" class="step-trigger" role="tab" id="stepperFormTrigger9"
+                    aria-controls="form-page-9">
+                    <span class="bs-stepper-circle">9</span>
+                    <span class="bs-stepper-label">Declaration</span>
+                </button>
+            </div>
+            <!-- <div class="bs-stepper-line"></div> -->
+            <div class="step" data-target="#form-page-10">
+                <button type="button" class="step-trigger" role="tab" id="stepperFormTrigger10"
+                    aria-controls="form-page-10">
+                    <span class="bs-stepper-circle">10</span>
+                    <span class="bs-stepper-label">Finish to PDF</span>
+                </button>
+            </div>
+            <!-- <div class="step" data-target="#form-page-11">
+                <button type="button" class="step-trigger" role="tab" id="stepperFormTrigger11"
+                    aria-controls="form-page-11">
+                    <span class="bs-stepper-circle">10</span>
+                    <span class="bs-stepper-label"></span>
+                </button>
+            </div> -->
+        </div>
+        <div class="bs-stepper-content">
+            <form id="appForm" class="needs-validation" onSubmit="return false" method="POST"
+                action="{% url 'formProcessing' %}" novalidate>
+                {% csrf_token %}
+                {% include 'applicationForm/page1.html' %}
+                {% include 'applicationForm/page2.html' %}
+                {% include 'applicationForm/page3.html' %}
+                {% include 'applicationForm/page4.html' %}
+                {% include 'applicationForm/page5.html' %}
+                {% include 'applicationForm/page6.html' %}
+                {% include 'applicationForm/page7.html' %}
+                {% include 'applicationForm/page8.html' %}
+                {% include 'applicationForm/page9.html' %}
+                {% include 'applicationForm/page10.html' %}
+
+
+            </form>
+            <!-- <div class="card">
+                <div class="card-title">
+                    Tell us how to make this page better..
+                </div>
+                <div class="card-body">
+                    <textarea name="makeBetter" id="makeBetter" cols="30" rows="10"></textarea>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block scriptContent %}
+<!-- <script src="{% static 'home/js/jquery/jquery-3.4.1.min.js' %}"></script> -->
+<script src="{% static 'applicationForm/parsley/parsley.min.js' %}"></script>
+<script src="{% static 'applicationForm/tagsinput/tagsinput.js' %}"></script>
+<script src="{% static 'applicationForm/tagsinput/custom.js' %}"></script>
+<script src="{% static 'applicationForm/js/combodate/combodate.js' %}"></script>
+<script src="{% static 'applicationForm/momentjs/moment.min.js' %}"></script>
+<script src="{% static 'applicationForm/axios/axios.min.js' %}"></script>
+<script src="{% static 'applicationForm/js/apiScripts.js' %}"></script>
+<script src="{% static 'applicationForm/bootstrap-select/bootstrap-select.min.js' %}"></script>
+<script src="{% static 'applicationForm/bootstrap-select/bootstrap-select-custom.js' %}"></script>
+<script src="{% static 'applicationForm/js/prereqFormScripts.js' %}"></script>
+<script src="{% static 'applicationForm/js/formScripts.js' %}"></script>
+<script src="{% static 'applicationForm/js/validationScripts.js' %}"></script>
+<script src="{% static 'applicationForm/stepper/bs-stepper.min.js' %}"></script>
+<script src="{% static 'applicationForm/intlTelInput/intlTelInput.min.js' %}"></script>
+<script src="{% static 'applicationForm/intlTelInput/utils.js' %}"></script>
+<script src="{% static 'applicationForm/countrySelect/countrySelect.min.js' %}"></script>
+<script src="{% static 'applicationForm/js/countryScripts.js' %}"></script>
+<script src="{% static 'applicationForm/js/phoneScripts.js' %}"></script>
+
+<script>
+    $(function () {
+        $('.date').combodate({
+            minYear: 1900,
+            customClass: 'custom-control-inline form-control',
+            smartDays: true,
+            firstItem: 'name',
+            format: "DD/MM/YYYY"
+        });
+    });
+</script>
+<script>
+    $(function () {
+        $('[data-toggle="popover"]').popover();
+    });
+</script>
+
+{% endblock scriptContent %}
